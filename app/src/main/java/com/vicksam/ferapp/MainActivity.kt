@@ -1,8 +1,11 @@
 package com.vicksam.ferapp
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import android.util.Size
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.otaliastudios.cameraview.controls.Audio
@@ -18,6 +21,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var captureMeButton : Button
+
     private val viewModel = ViewModelProvider
         .NewInstanceFactory()
         .create(FerViewModel::class.java)
@@ -29,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         val lensFacing =
                 savedInstanceState?.getSerializable(KEY_LENS_FACING) as Facing? ?: Facing.BACK
         setupCamera(lensFacing)
+
+        captureMeButton = findViewById(R.id.captureMeButton)
 
         // Load model
         FerModel.load(this)
@@ -57,10 +64,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupObservers() {
-        viewModel.emotionLabels().observe(this, {
-
-            it?.let { faceBoundsOverlay.updateEmotionLabels(it) }
-        })
+        viewModel.emotionLabels().observe(this) {
+            it?.let {
+                faceBoundsOverlay.updateEmotionLabels(it)
+                val first = it.entries.first()
+                val emotion = first.value
+                captureMeButton.setOnClickListener{
+                    val intent = Intent(this,AdaptiveUI::class.java)
+                    intent.putExtra("EMOTION",emotion)
+                    startActivity(intent)
+                }
+                Log.i("SHOWEMOTION","${it}")
+            }
+        }
     }
 
     private fun setupCamera(lensFacing: Facing) {

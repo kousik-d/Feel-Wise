@@ -1,18 +1,20 @@
 package com.vicksam.ferapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import org.json.JSONObject
+import kotlin.math.max
+
 
 class TextRecognition : AppCompatActivity() {
     lateinit var UserText : TextView
@@ -53,9 +55,9 @@ class TextRecognition : AppCompatActivity() {
                         val responseData = response.body?.string()
                         val response = client.newCall(request).execute()
                         val responseBody = response.body?.string() ?: ""
-                        val resultMap = convertResponseToMap(responseBody)
-
-                        Log.i("TEXT_RECOGNITION", "Response: $resultMap")
+                        val json = JSONObject(responseBody)
+                        val Emotion = findEmotion(json)
+                        Log.i("TEXT_RECOGNITION", "Response: ${Emotion}")
                     }
                 })
             } else {
@@ -64,25 +66,26 @@ class TextRecognition : AppCompatActivity() {
         }
     }
 
+    private fun findEmotion(json: JSONObject): Any {
+        var resultEmotion = "";
+        var maxvalue = 0.0;
+        val sentence = json.get("sentence") as JSONObject;
+        for(key in sentence.keys()){
+            if(key != "text"){
+                val value = sentence.getDouble(key) *100;
+                if(value>maxvalue){
+                    maxvalue = value;
+                    resultEmotion = key;
+                    Log.i("RESULTEMOT","$resultEmotion  $maxvalue");
+                }
+            }
+        }
+        return resultEmotion
+    }
+
     fun isOnlyLettersAndSpaces(input: String): Boolean {
         val regex = Regex("^[a-zA-Z\\s]+$")
         return input.matches(regex)
-    }
-
-    fun convertResponseToMap(responseBody: String) : String?{
-        val gson = Gson()
-        val mapType = object : TypeToken<Map<String, Any>>() {}.type
-        val resultMap = gson.fromJson(responseBody, mapType)
-        var maxKey: String? = null
-        var maxValue: Any? = null
-
-        for ((key, value) in resultMap) {
-            if (maxValue == null || (value is Number && (maxValue !is Number || value.toDouble() > (maxValue as Number).toDouble()))) {
-                maxKey = key
-                maxValue = value
-            }
-        }
-        return maxKey
     }
 
 
