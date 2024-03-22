@@ -21,6 +21,7 @@
         android:layout_height="350dp"
         android:src="@drawable/text_us" />
 
+
     <EditText
         android:id="@+id/feelings"
         android:layout_width="match_parent"

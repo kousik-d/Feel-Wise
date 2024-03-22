@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AdaptiveUI">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/flowerImage"
+        android:layout_width="250dp"
+        android:layout_gravity="center"
+        android:layout_height="250dp"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/pxfuel_removebg_preview" />
+
+    <TextView
+        android:id="@+id/BreathText"
+        android:layout_width="wrap_content"
+        android:text="Breath"
+        android:layout_below="@id/flowerImage"
+        android:textSize="28sp"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/playMusicBtn"
+        android:layout_width="wrap_content"
+        android:text="Play Music"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"/>
+
+
+
+</RelativeLayout>

@@ -45,6 +45,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    compile 'com.github.florent37:viewanimator:1.1.0'
+    implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
 
     // Camera
     implementation "com.otaliastudios:cameraview:2.0.0"
@@ -54,6 +56,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-ml-model-interpreter:22.0.4'
     implementation 'org.tensorflow:tensorflow-lite:2.3.0'
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'com.github.arsvechkarev:TimerX:3.1.0'
+    implementation 'nl.joery.timerangepicker:timerangepicker:1.0.0'
+    def htextview_version = "0.1.6"
+// as 3.0 use implementation
+    compile "com.hanks:htextview-base:$htextview_version"
+    compile "com.hanks:htextview-typer:$htextview_version"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
