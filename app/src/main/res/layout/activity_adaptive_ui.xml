@@ -1,10 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    android:padding="16dp"
     tools:context=".AdaptiveUI">
+    <TextView
+        android:id="@+id/heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Why Fear ?"
+        android:gravity="center_horizontal"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/text1"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_below="@id/heading"
+        android:layout_height="wrap_content"
+        android:text="Take a deep breath and focus on the present and let go of worries about the future."
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/light_blue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/heading"/>
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:id="@+id/text2"
+        android:layout_below="@id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You are stronger than you think, and you have the power to overcome any challenges that come your way."
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="#DBC9FA"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text1" />
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Trust in yourself, and know that everything will be okay."
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="#FFE5B4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text2"/>
 
     <ImageView
         android:id="@+id/flowerImage"
@@ -19,20 +72,25 @@
         android:id="@+id/BreathText"
         android:layout_width="wrap_content"
         android:text="Breath"
+        android:textColor="@color/white"
         android:layout_below="@id/flowerImage"
         android:textSize="28sp"
         android:layout_centerInParent="true"
         android:layout_height="wrap_content"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
+    android:layout_marginTop="30dp"
         android:id="@+id/playMusicBtn"
-        android:layout_width="wrap_content"
-        android:text="Play Music"
-        android:layout_alignParentBottom="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:backgroundTint="#FFE5B4"
+        android:layout_below="@id/BreathText"
         android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content"/>
-
-
+    android:text="Common Let's Breathe!"
+    android:textColor="@color/dark_grey"
+        android:layout_centerVertical="true"
+    android:fontFamily="@font/poppins_semibold"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
 
 </RelativeLayout>

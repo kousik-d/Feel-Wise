@@ -5,50 +5,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".AppOpenActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="cursive"
-        android:gravity="center"
-        android:padding="22dp"
-        android:text="Feel Wise"
-        android:textAppearance="@color/black"
-        android:textSize="38sp" />
+        <TextView
+            android:layout_marginVertical="28dp"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:text="Tell us about your day :)"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="18sp"
+            android:textColor="@color/card_blue"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/emotions" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="25dp"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/TextMeButton"
+        <ImageView
+            android:layout_width="350dp"
+            android:layout_marginVertical="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:src="@drawable/tell_us"
+            android:layout_height="350dp"/>
+        <Button
+            android:id="@+id/textButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Text Me"
-            android:backgroundTint="@color/purple_200"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/card_blue"
+            android:text="Describe using Text"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_semibold"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="1dp"
+            android:background="@color/grey"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textAllCaps="false" />
-      <Space
-          android:layout_width="10dp"
-          android:layout_height="match_parent"/>
-      <androidx.appcompat.widget.AppCompatButton
-          android:id="@+id/VideoBtn"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Video"
-          android:backgroundTint="@color/purple_200"
-          android:layout_weight="1"
-          android:textAllCaps="false"/>
+            android:text="OR"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_medium"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="1dp"
+            android:background="@color/grey"/>
 
     </LinearLayout>
 
+        <Button
+            android:id="@+id/videoButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/card_blue"
+            android:text="Describe using Expressions"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_semibold"/>
 </LinearLayout>

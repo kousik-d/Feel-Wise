@@ -1,12 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/greyblack"
     tools:context=".AdaptiveUIAnger">
 
+    <TextView
+        android:id="@+id/heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Calm Down !"
+        android:gravity="center_horizontal"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Take a deep breath and count to ten. Inhale slowly, hold, and exhale."
+        android:textColor="@color/light_blue"
+        android:fontFamily="@font/poppins_semibold"
+        app:layout_constraintTop_toBottomOf="@id/heading"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Visualize a peaceful place or a happy memory. Focus on the details and sensations."
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/soft_purple"
+        app:layout_constraintTop_toBottomOf="@id/text1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Release tension by gently stretching or doing a calming activity you enjoy."
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/soft_orange"
+        app:layout_constraintTop_toBottomOf="@id/text2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <ImageView
+        android:id="@+id/animation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <com.skyfishjy.library.RippleBackground
         android:layout_width="250dp"
         android:layout_height="250dp"
@@ -15,7 +81,7 @@
         android:layout_alignEnd="@id/circularProgressBar"
         android:layout_alignTop="@id/circularProgressBar"
         android:layout_alignBottom="@id/circularProgressBar"
-        app:rb_color="#000080"
+        app:rb_color="@color/light_blue"
         app:rb_rippleAmount="10"
         app:rb_duration="6000"
         app:rb_scale="4"
@@ -33,27 +99,37 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="25dp"/>
-    <TextView
-        android:id="@+id/angerText"
-        android:text="Take a break and relax"
-        android:textSize="22dp"
-        android:gravity="center"
-        android:layout_marginHorizontal="100dp"
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"/>
-
     <ProgressBar
         android:id="@+id/circularProgressBar"
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:layout_centerInParent="true"
         android:indeterminateOnly="false"
-        android:progressDrawable="@drawable/circular_progress_bar"/>
+        android:progressDrawable="@drawable/circular_progress_bar" />
+    </RelativeLayout>
 
-    <Button
-        android:id="@+id/SelectTime"
-        android:text="Select Timer"
+    <TextView
+        android:id="@+id/angerText"
+        android:text="Take a break and relax"
+        android:textSize="22dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:layout_marginHorizontal="100dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-</RelativeLayout>
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"/>
+    <Button
+        android:id="@+id/SelectTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/soft_orange"
+        android:text="Relax &amp; Let Go"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textColor="@color/greyblack"
+        android:fontFamily="@font/poppins_semibold"/>
+</LinearLayout>
+</ScrollView>

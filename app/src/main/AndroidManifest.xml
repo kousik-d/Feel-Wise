@@ -12,13 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FerApp">
         <activity
-            android:name=".AdaptiveUIAnger"
+            android:name=".AdaptiveUISad"
+            android:exported="false" />
+        <activity
+            android:name=".AdaptiveUIHappy"
+            android:exported="false" />
+        <activity
+            android:name=".AdaptiveUIMotivation"
             android:exported="false" />
         <activity
             android:name=".AdaptiveUI"
             android:exported="false" />
         <activity
-            android:name=".AppOpenActivity"
+            android:name=".AdaptiveUIAnger"
             android:exported="false" />
         <activity
             android:name=".TextRecognition"
@@ -27,7 +33,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".AdaptiveUIMotivation"
+            android:name=".AppOpenActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

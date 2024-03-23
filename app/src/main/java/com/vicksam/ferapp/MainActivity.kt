@@ -18,6 +18,7 @@ import husaynhakeem.io.facedetector.FaceDetector
 import husaynhakeem.io.facedetector.Frame
 import husaynhakeem.io.facedetector.LensFacing
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -70,9 +71,29 @@ class MainActivity : AppCompatActivity() {
                 val first = it.entries.first()
                 val emotion = first.value
                 captureMeButton.setOnClickListener{
-                    val intent = Intent(this,AdaptiveUI::class.java)
-                    intent.putExtra("EMOTION",emotion)
-                    startActivity(intent)
+                    if(emotion.equals("anger")){
+                        val intent = Intent(this,AdaptiveUIAnger::class.java)
+                        intent.putExtra("EMOTION",emotion)
+                        startActivity(intent)
+                    }
+                    if(emotion.equals("sad")){
+                        val randomN = Random.nextInt(0,1)
+                        if(randomN == 0) {
+                            val intent = Intent(this, AdaptiveUIMotivation::class.java)
+                            startActivity(intent)
+                        } else {
+                            val intent = Intent(this, AdaptiveUISad::class.java)
+                            startActivity(intent)
+                        }
+                    }
+                    if(emotion.equals("fear")){
+                        val intent = Intent(this,AdaptiveUI::class.java)
+                        startActivity(intent)
+                    }
+                    if(emotion.equals("happy")){
+                        val intent = Intent(this,AdaptiveUIHappy::class.java)
+                        startActivity(intent)
+                    }
                 }
                 Log.i("SHOWEMOTION","${it}")
             }

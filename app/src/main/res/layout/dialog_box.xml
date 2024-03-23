@@ -10,9 +10,9 @@
     <nl.joery.timerangepicker.TimeRangePicker
         android:id="@+id/picker"
         android:layout_gravity="center"
-        app:trp_startTimeMinutes = "0"
-        app:trp_endTimeMinutes= "60"
         android:layout_width="300dp"
+        app:trp_startTimeMinutes="0"
+        app:trp_endTimeMinutes="60"
         android:layout_height="wrap_content"
         app:trp_clockVisible="true"
         app:trp_thumbIconEnd="@drawable/line_end_circle"

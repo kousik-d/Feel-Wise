@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import com.skyfishjy.library.RippleBackground
+import kotlinx.android.synthetic.main.activity_adaptive_uianger.SelectTime
 import kotlinx.android.synthetic.main.activity_adaptive_uianger.view.ripple_animation
 import nl.joery.timerangepicker.TimeRangePicker
 import timerx.buildStopwatch
@@ -26,20 +27,14 @@ import kotlin.math.roundToInt
 class AdaptiveUIAnger : AppCompatActivity() {
     lateinit var image: ImageView
     lateinit var takeBreakText : TextView
+    var isActionAlreadyInProgress = false
     lateinit var customCountdownTimer: CustomCountdownTimer
     lateinit var circularProgressBar : ProgressBar
     lateinit var timerButton : Button
 
-    private val countdownTime = 60 // 1 hour , 3600 second, 60 min
+    private var countdownTime = 60 // 1 hour , 3600 second, 60 min
     private val clockTime = (countdownTime * 1000).toLong()
     private val progressTime = (clockTime / 1000).toFloat()
-
-    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() {
-            onBackPressedMethod()
-        }
-
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,13 +46,14 @@ class AdaptiveUIAnger : AppCompatActivity() {
 
         timerButton = findViewById(R.id.SelectTime)
 
+        takeBreakText.visibility = TextView.INVISIBLE
+
         timerButton.setOnClickListener {
-            CreateDialogBox()
+            if(!isActionAlreadyInProgress){
+                CreateDialogBox()
+            }
         }
         image = findViewById(R.id.shapableimage)
-        image.setOnClickListener {
-            findViewById<RippleBackground>(R.id.ripple_animation).startRippleAnimation()
-        }
 
         var secondsLeft = 0
         customCountdownTimer = object : CustomCountdownTimer(clockTime, 1000) {}
@@ -65,7 +61,6 @@ class AdaptiveUIAnger : AppCompatActivity() {
             val second = (millisUntilFinished / 1000.0f).roundToInt()
             if (second != secondsLeft) {
                 secondsLeft = second
-
                 timerFormat(
                     secondsLeft,
                     takeBreakText
@@ -73,6 +68,8 @@ class AdaptiveUIAnger : AppCompatActivity() {
             }
         }
         customCountdownTimer.onFinish = {
+            isActionAlreadyInProgress = false
+            takeBreakText.text = "Good Job"
             timerFormat(
                 0,
                 takeBreakText
@@ -80,48 +77,31 @@ class AdaptiveUIAnger : AppCompatActivity() {
         }
 
         circularProgressBar.max = progressTime.toInt()
-
         circularProgressBar.progress = progressTime.toInt()
-
     }
     private fun timerFormat(secondsLeft: Int, timeTxt: TextView) {
         circularProgressBar.progress = secondsLeft
+        if(secondsLeft == 0){
+            timeTxt.text = "Good Job"
+        }
         val decimalFormat = DecimalFormat("00")
         val hour = secondsLeft / 3600
         val min = (secondsLeft % 3600) / 60
         val seconds = secondsLeft % 60
-
         val timeFormat1 = decimalFormat.format(secondsLeft)
         val timeFormat2 = decimalFormat.format(min) + ":" + decimalFormat.format(seconds)
         val timeFormat3 =
             decimalFormat.format(hour) + ":" + decimalFormat.format(min) + ":" + decimalFormat.format(
                 seconds
             )
-
+        if(timeFormat3.equals("00:00:00")){
+            timeTxt.text = "Good Job"
+        }
         timeTxt.text = timeFormat3
     }
 
-    private fun onBackPressedMethod() {
-        customCountdownTimer.destroyTimer()
-        finish()
-    }
-
-    override fun onPause() {
-        customCountdownTimer.pauseTimer()
-        super.onPause()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        customCountdownTimer.resumeTimer()
-    }
-
-    override fun onDestroy() {
-        customCountdownTimer.destroyTimer()
-        super.onDestroy()
-    }
-
     fun CreateDialogBox(){
+        countdownTime = 60
         val dialogview = LayoutInflater.from(this).inflate(R.layout.dialog_box,null)
         val builder = AlertDialog.Builder(this)
         with(builder){
@@ -133,20 +113,33 @@ class AdaptiveUIAnger : AppCompatActivity() {
 
         picker?.setOnTimeChangeListener(object : TimeRangePicker.OnTimeChangeListener {
             override fun onStartTimeChange(startTime: TimeRangePicker.Time) {
-                Log.d("TimeRangePicker", "Start time: " + startTime)
+                Log.d("TimeRangePicker", "Start time: " + startTime.minute)
             }
 
             override fun onEndTimeChange(endTime: TimeRangePicker.Time) {
-                Log.d("TimeRangePicker", "End time: " + endTime.hour)
+                Log.d("TimeRangePicker", "End time: " + endTime.minute)
             }
 
             override fun onDurationChange(duration: TimeRangePicker.TimeDuration) {
-                Log.d("TimeRangePicker", "Duration: " + duration.hour)
+                Log.d("TimeRangePicker", "Duration: " + duration.durationMinutes)
             }
         })
+        picker?.sliderColor = resources.getColor(R.color.soft_orange)
+
+        picker?.sliderRangeColor = resources.getColor(R.color.soft_purple)
 
         okBtn?.setOnClickListener {
+            isActionAlreadyInProgress = true
+            customCountdownTimer.startTimer()
+            takeBreakText.visibility = TextView.VISIBLE
+            findViewById<RippleBackground>(R.id.ripple_animation).startRippleAnimation()
             alertdialog.dismiss()
+        }
+    }
+
+    override fun onBackPressed() {
+        if(!isActionAlreadyInProgress) {
+            super.onBackPressed()
         }
     }
 }

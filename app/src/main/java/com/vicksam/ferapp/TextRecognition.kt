@@ -1,5 +1,6 @@
 package com.vicksam.ferapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
@@ -14,6 +15,7 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import org.json.JSONObject
 import kotlin.math.max
+import kotlin.random.Random
 
 
 class TextRecognition : AppCompatActivity() {
@@ -22,7 +24,7 @@ class TextRecognition : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_text_reg)
-        UserText = findViewById(R.id.feelings)
+        UserText = findViewById(R.id.sadnessEditText)
         SendUsButton = findViewById(R.id.SendTextToAPI)
         SendUsButton.setOnClickListener {
             val feelings = UserText.text.toString()
@@ -56,8 +58,25 @@ class TextRecognition : AppCompatActivity() {
                         val response = client.newCall(request).execute()
                         val responseBody = response.body?.string() ?: ""
                         val json = JSONObject(responseBody)
-                        val Emotion = findEmotion(json)
-                        Log.i("TEXT_RECOGNITION", "Response: ${Emotion}")
+                        val emotion = findEmotion(json)
+                        if(emotion.equals("anger")){
+                            val intent = Intent(this@TextRecognition,AdaptiveUIAnger::class.java)
+                            startActivity(intent)
+                        }
+                        if(emotion.equals("sadness")){
+                            val randomN = Random.nextInt(0,1)
+                            if(randomN == 0) {
+                                val intent = Intent(this@TextRecognition, AdaptiveUIMotivation::class.java)
+                                startActivity(intent)
+                            } else {
+                                val intent = Intent(this@TextRecognition, AdaptiveUISad::class.java)
+                                startActivity(intent)
+                            }
+                        }
+                        if(emotion.equals("fear")){
+                            val intent = Intent(this@TextRecognition,AdaptiveUI::class.java)
+                            startActivity(intent)
+                        }
                     }
                 })
             } else {
@@ -87,6 +106,7 @@ class TextRecognition : AppCompatActivity() {
         val regex = Regex("^[a-zA-Z\\s]+$")
         return input.matches(regex)
     }
+
 
 
 }

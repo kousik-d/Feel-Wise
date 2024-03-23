@@ -5,10 +5,10 @@
             android:shape="ring"
             android:thicknessRatio="70"
             android:useLevel="false">
-            <solid android:color="#DDDDDD" />
+            <solid android:color="@color/white" />
             <stroke
                 android:width="2dp"
-                android:color="#000080" />
+                android:color="@color/white" />
         </shape>
     </item>
     <item>
@@ -19,7 +19,7 @@
                 android:shape="ring"
                 android:thicknessRatio="70"
                 android:useLevel="true">
-                <solid android:color="#050C20" />
+                <solid android:color="@color/purple_200" />
             </shape>
         </rotate>
     </item>

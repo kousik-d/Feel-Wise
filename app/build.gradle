@@ -51,7 +51,6 @@ dependencies {
     // Camera
     implementation "com.otaliastudios:cameraview:2.0.0"
     implementation 'com.google.code.gson:gson:2.8.7'
-
     // Firebase custom TensorflowLite model dependencies
     implementation 'com.google.firebase:firebase-ml-model-interpreter:22.0.4'
     implementation 'org.tensorflow:tensorflow-lite:2.3.0'

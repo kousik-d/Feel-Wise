@@ -7,4 +7,25 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="greyblack">#DA232222</color>
+    <color name="darkBlue">#003479</color>
+    <color name="skyBlue">#00C2CB</color>
+    <color name="orange">#FF5757</color>
+    <color name="grey">#2F1C1C1C</color>
+    <color name="red">#A11414</color>
+    <color name="card_blue">#0063F5</color>
+    <color name="transparent_blue">#A8AACAF8</color>
+    <color name="green">#2E8F32</color>
+    <color name="light_green">#C5E1A5</color>
+    <color name="light_blue">#B3C6FF</color>
+    <color name="soft_purple">#E1D5E7</color>
+    <color name="soft_orange">#FFDAB9</color>
+    <!-- Background Color -->
+    <color name="sky_blue">#87CEEB</color>
+    <!-- Text Colors -->
+    <color name="dark_grey">#333333</color>
+    <color name="soft_pink">#FFC0CB</color>
+    <color name="light_grey">#D3D3D3</color>
+    <!-- Button and EditText Colors -->
+    <color name="soft_peach">#FFDAB9</color>
 </resources>

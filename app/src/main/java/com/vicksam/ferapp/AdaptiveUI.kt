@@ -15,6 +15,7 @@ class AdaptiveUI : AppCompatActivity() {
     lateinit var playMusicBtn : AppCompatButton
     lateinit var flowerImage : ImageView
     lateinit var breadthText : TextView
+    lateinit var mediaPlayer: MediaPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_adaptive_ui)
@@ -29,12 +30,9 @@ class AdaptiveUI : AppCompatActivity() {
 //            .dp().translationY(-1000f)
 //            .start()
 
-
-
-        val mediaPlayer = MediaPlayer.create(this,R.raw.music)
+        mediaPlayer = MediaPlayer.create(this,R.raw.pleasent)
 
         playMusicBtn.setOnClickListener {
-
             startAnimation()
             if(!mediaPlayer.isPlaying){
                 mediaPlayer.start()
@@ -42,9 +40,8 @@ class AdaptiveUI : AppCompatActivity() {
                 mediaPlayer.pause()
             }
         }
-
-        val emotion = intent.getStringExtra("EMOTION")
-        Toast.makeText(this,"Emotion is ${emotion}",Toast.LENGTH_LONG).show()
+        //val emotion = intent.getStringExtra("EMOTION")
+        //Toast.makeText(this,"Emotion is ${emotion}",Toast.LENGTH_LONG).show()
     }
 
     fun startIntroAnimation(){
@@ -75,4 +72,9 @@ class AdaptiveUI : AppCompatActivity() {
              }
              .start()
      }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        mediaPlayer.pause()
+    }
 }
